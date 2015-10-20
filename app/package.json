@@ -1,0 +1,10 @@
+{
+    "name": "appcenter",
+    "id": "extensionname@example.org",
+    "title": "appcenter",
+    "main": "main.js",
+    "description": "Mozilla Online Firefox Extension",
+    "author": "Justin Leo Ye",
+    "license": "MPL 2.0",
+    "version": "0.1.0"
+}

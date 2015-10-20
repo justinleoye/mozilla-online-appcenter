@@ -1,0 +1,9 @@
+{
+  "name": "appcenter",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "jquery.balloon.js": "https://github.com/urin/jquery.balloon.js.git#~0.6.0"
+  }
+}
