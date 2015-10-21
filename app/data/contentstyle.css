@@ -55,7 +55,7 @@
 .livemargins-brand-kingsoft {
   width: 160px;
   float: right;
-  background: url("chrome://livemargins/skin/kingsoft.png") no-repeat scroll 0 -2px transparent;
+  background: url("./images/kingsoft.png") no-repeat scroll 0 -2px transparent;
   background-size: 20px 20px;
   height: 20px;
   text-align: inherit;
@@ -64,7 +64,7 @@
 .livemargins-brand-yeekit {
   width: 176px;
   float: right;
-  background: url("chrome://livemargins/skin/yeekit.png") no-repeat scroll 0 0 transparent;
+  background: url("./images/yeekit.png") no-repeat scroll 0 0 transparent;
   background-size: 60px 20px;
   height: 20px;
   text-align: inherit;
