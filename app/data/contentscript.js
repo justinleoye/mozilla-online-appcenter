@@ -1,8 +1,8 @@
 'use strict';
 
 $(function(){
-
   addEventListener('mouseup', onMouseUp);
+  addEventListener('mousedown', onMouseDown);
   let bubble = createBubble();
 
   function onMouseUp(evt){
@@ -11,25 +11,34 @@ $(function(){
       return;
     }
 
-    //console.log('AppcenterModules.Util:',AppcenterModules.Util);
-
     let selection = AppcenterModules.Util.getSelection();
     if (!selection) return;
 
-    self.port.emit('textSelect', {
+    self.port.emit('translation', {
       selection: selection,
     });
   }
 
-  // handle translation done.
-  self.port.on('tranlated', function(data){
+  function onMouseDown(evt){
+    console.log('mousedown');
+    bubble.hide();
+  }
+
+  // handle word translation done.
+  self.port.on('wordTranslated', function(data){
     console.log('data:',data);
-    handleTranslated(data);
+    let wtDom = AppcenterModules.Widget.Util.createWordTranslationDom(data);
+    handleTranslated($(wtDom));
   });
 
-  function handleTranslated(data){
-    alert('handleTranslated');
-    let text = data.tranlated.text;
+  // handle sentence translation done.
+  self.port.on('sentenceTranslated', function(data){
+    console.log('data:',data);
+    let stDom = AppcenterModules.Widget.Util.createSentenceTranslationDom(data);
+    handleTranslated($(stDom));
+  });
+
+  function handleTranslated(contents){
     let pos_direc = AppcenterModules.Util.calcPositionAndDirectionOfSelection();
 
     bubble.setPosition({
@@ -38,7 +47,7 @@ $(function(){
     });
     bubble.show({
       position: pos_direc.direction,
-      contents: text
+      contents: contents
     });
 
   }
@@ -51,7 +60,7 @@ $(function(){
     let bubble = new AppcenterModules.Widget.Bubble({
       target: bubbleElement
     });
-    bubble.show();
     return bubble;
   }
 });
+

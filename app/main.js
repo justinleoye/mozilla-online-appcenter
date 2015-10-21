@@ -50,13 +50,6 @@ var button = ToggleButton({
     
 });
 
-function handleTextSelect(selectionInfo){
-  console.log('selectionInfo:', selectionInfo);
-  Translate.enToZh(selectionInfo.selection, function(result){
-    console.log('translate result:', result);
-  });
-}
-
 
 // Create a content script
 var pageMod = PageMod({
@@ -65,12 +58,25 @@ var pageMod = PageMod({
     data.url('./bower_components/jquery/dist/jquery.js'),
     data.url('./bower_components/jquery.balloon.js/jquery.balloon.js'),
     data.url('./lib/bubble.widget.module.js'),
+    data.url('./lib/util.widget.module.js'),
     data.url('./lib/util.module.js'),
     data.url('contentscript.js')
   ],
   contentStyleFile: [data.url('contentstyle.css')],
   onAttach: function(worker){
-    worker.port.on('textSelect', handleTextSelect);
+    worker.port.on('translation', handleTranslation);
+
+    function handleTranslation(selectionInfo){
+      console.log('selectionInfo:', selectionInfo);
+      Translate.tEnglish(selectionInfo.selection, function(result){
+        console.log('translate result:', result);
+        worker.port.emit('wordTranslated', result);
+      }, function(result){
+        console.log('translate result:', result);
+        worker.port.emit('sentenceTranslated', result);
+      });
+    }
+
   }
 });
 

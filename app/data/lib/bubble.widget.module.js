@@ -7,6 +7,10 @@ $(function(){
   AppcenterModules.Widget.Bubble = (function(){
     function Bubble(options){ // options: {id, Bubble:[]}
       this.options = options;
+      this.css = {
+        fontSize: '100%',
+      };
+      $.extend(this.css, options.css || {});
       this.$obj = $(options.target);
       this._init();
     }
@@ -28,6 +32,10 @@ $(function(){
     };
 
     Bubble.prototype.show = function show(options){
+      options = options || {};
+      options.css = options.css || {};
+      let css = $.extend({}, this.css, options.css);
+      options.css = css;
       this.$obj.showBalloon(options);
     };
 
