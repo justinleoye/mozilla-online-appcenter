@@ -51,6 +51,17 @@ module.exports = function(grunt) {
                 tasks: ['shell:xpi']
             }
         },
+        less: {
+          dev: {
+            files: [{
+                expand: true,
+                cwd: '<%= config.app %>',
+                dest: '<%= config.app %>',
+                src: '{,data/}*.less',
+                ext: '.css'
+            }]
+          }
+        },
         wiredep: {
             task: {
                 // Point to the files that should be updated when
@@ -68,7 +79,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('run', ['shell:run']);
-    grunt.registerTask('build', ['shell:build']);
-    grunt.registerTask('default', ['run']);
+    grunt.registerTask('run', ['less:dev', 'shell:run']);
+    grunt.registerTask('build', ['less:dev', 'shell:build']);
+    grunt.registerTask('default', ['less:dev', 'run']);
 };
