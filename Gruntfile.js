@@ -41,7 +41,7 @@ module.exports = function(grunt) {
                     'cd <%= config.app %>',
                     'jpm xpi',
                     'cd ..',
-                    'mv <%= config.name %>.xpi <%= config.dist %>'
+                    'mv <%= config.app %>/<%= config.name %>*.xpi <%= config.dist %>'
                 ].join('&&')
             }
         },

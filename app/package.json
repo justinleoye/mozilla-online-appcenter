@@ -1,6 +1,6 @@
 {
     "name": "appcenter",
-    "id": "extensionname@example.org",
+    "id": "appcenter@mozilla.com.cn",
     "title": "appcenter",
     "main": "main.js",
     "description": "Mozilla Online Firefox Extension",
