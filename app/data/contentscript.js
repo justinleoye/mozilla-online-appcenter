@@ -5,8 +5,19 @@ $(function(){
   addEventListener('mousedown', onMouseDown);
   let bubble = createBubble();
 
+  // handle word translation done.
+  self.port.on('wordTranslated', function(data){
+    let wtDom = AppcenterModules.Widget.Util.createWordTranslationDom(data);
+    handleTranslated($(wtDom));
+  });
+
+  // handle sentence translation done.
+  self.port.on('sentenceTranslated', function(data){
+    let stDom = AppcenterModules.Widget.Util.createSentenceTranslationDom(data);
+    handleTranslated($(stDom));
+  });
+
   function onMouseUp(evt){
-    console.log('mouseup');
     if (/^(about|chrome):/.test(location.protocol)) {
       return;
     }
@@ -20,23 +31,8 @@ $(function(){
   }
 
   function onMouseDown(evt){
-    console.log('mousedown');
     bubble.hide();
   }
-
-  // handle word translation done.
-  self.port.on('wordTranslated', function(data){
-    console.log('data:',data);
-    let wtDom = AppcenterModules.Widget.Util.createWordTranslationDom(data);
-    handleTranslated($(wtDom));
-  });
-
-  // handle sentence translation done.
-  self.port.on('sentenceTranslated', function(data){
-    console.log('data:',data);
-    let stDom = AppcenterModules.Widget.Util.createSentenceTranslationDom(data);
-    handleTranslated($(stDom));
-  });
 
   function handleTranslated(contents){
     let pos_direc = AppcenterModules.Util.calcPositionAndDirectionOfSelection();

@@ -3,7 +3,6 @@ AppcenterModules.Widget = AppcenterModules.Widget || {};
 AppcenterModules.Widget.Bubble = AppcenterModules.Widget.Bubble || {};
 
 $(function(){
-  console.log('redefine Bubble');
   AppcenterModules.Widget.Bubble = (function(){
     function Bubble(options){ // options: {id, Bubble:[]}
       this.options = options;
@@ -55,8 +54,6 @@ $(function(){
           .css('top', options.y);
     };
 
-    console.log('inner Bubble:', Bubble);
     return Bubble;
   })();
-  console.log('redefined Bubble', AppcenterModules.Widget.Bubble);
 });

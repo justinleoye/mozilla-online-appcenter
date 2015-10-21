@@ -10,14 +10,7 @@ var data = require('sdk/self').data;
 var { ToggleButton } = require('sdk/ui/button/toggle');
 var { PageMod } = require('sdk/page-mod');
 var { Panel } = require('sdk/panel');
-
-//var { Cu } = require('chrome');
-//
-//Cu.import("resource://lib/translate.jsm");
-
 var { Translate } = require('./lib/translate.jsm');
-
-console.log('Translate:',Translate);
 
 var popup = Panel({
   contentURL: data.url('popup.html'),
@@ -47,9 +40,7 @@ var button = ToggleButton({
     '64': './images/icon-64.png'
   },
   onClick: handleClick
-    
 });
-
 
 // Create a content script
 var pageMod = PageMod({
@@ -67,12 +58,9 @@ var pageMod = PageMod({
     worker.port.on('translation', handleTranslation);
 
     function handleTranslation(selectionInfo){
-      console.log('selectionInfo:', selectionInfo);
       Translate.tEnglish(selectionInfo.selection, function(result){
-        console.log('translate result:', result);
         worker.port.emit('wordTranslated', result);
       }, function(result){
-        console.log('translate result:', result);
         worker.port.emit('sentenceTranslated', result);
       });
     }

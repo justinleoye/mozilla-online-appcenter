@@ -18,13 +18,11 @@ $(function(){
     let lastRect = rects[rects.length-1];
 
     if(firstRect === lastRect){
-      console.log('equals');
       X = firstRect.left + firstRect.width*0.5;
       Y = firstRect.top + firstRect.height*0.5 + scrollY;
       showTop = centerY < Y;
       Y = showTop ? Y - firstRect.height*0.5 : Y + firstRect.height*0.5;
     }else{
-      console.log('not equals');
       let firstX = firstRect.left + firstRect.width*0.5;
       let firstY = firstRect.top + firstRect.height*0.5 + scrollY;
       let lastX = lastRect.left + lastRect.width*0.5;
@@ -51,7 +49,6 @@ $(function(){
   };
 
   AppcenterModules.Util.getSelection = function getSelection(){
-    console.log('getSelection');
     let selection = document.getSelection();
 
     for (let i = 0; i < selection.rangeCount; i ++) {
@@ -67,7 +64,6 @@ $(function(){
       }
     }
     let selectionStr = selection.toString();
-    console.log('selectionStr:',selectionStr);
     return selectionStr.trim();
   }
 });

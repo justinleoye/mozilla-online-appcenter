@@ -4,6 +4,7 @@ AppcenterModules.Widget.Util = AppcenterModules.Widget.Util || {};
 
 $(function(){
   AppcenterModules.Widget.Util.createWordTranslationDom = function(data){
+    // TODO: optimize later
     let translateArea = document.createElement('div');
     translateArea.setAttribute('class', 'bubble-content');
 
